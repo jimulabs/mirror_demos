@@ -7,11 +7,16 @@
         <!--<item name="android:windowBackground">@android:color/black</item>-->
         <item name="android:actionBarStyle">@style/ActionBar</item>
         <item name="android:windowActionBarOverlay">true</item>
+        <item name="android:actionBarTabStyle">@style/ActionBarTab</item>
         <!--<item name="android:checkBoxPreferenceStyle">@style/CheckBoxPreference</item>-->
         <!--<item name="android:background">@null</item>-->
         <!--<item name="android:windowActionBar">false</item>-->
     </style>
     <style name="ActionBar" parent="android:Widget.Holo.ActionBar">
+        <item name="android:background">@drawable/action_bar_background</item>
+    </style>
+    <style name="ActionBarTab" parent="android:Widget.ActionBar.TabView">
+        <item name="android:background">@android:color/transparent</item>
     </style>
     <style name="AreaSeparator">
         <item name="android:visibility">gone</item>
@@ -95,7 +100,7 @@
     </style>
     <style name="Widget.Holo.CompoundButton.Switch" parent="android:style/Widget.CompoundButton">
         <item name="android:thumb">@drawable/onoff_thumb_selector</item>
-        <item name="android:track">@drawable/onoff_background</item>
+        <item name="android:track">@drawable/onoff_background_blue</item>
         <item name="android:textOn">@string/switch_on</item>
         <item name="android:textOff">@string/switch_off</item>
         <item name="android:thumbTextPadding">12.0dip</item>
@@ -119,5 +124,13 @@
     </style>
     <style name="medium_light">
         <item name="android:textSize">60.0dip</item>
+    </style>
+
+    <style name="textStyle" parent="android:TextAppearance">
+        <item name="android:fontFamily">sans-serif-thin</item>
+    </style>
+
+    <style name="textStyle.Large">
+        <item name="android:textSize">30sp</item>
     </style>
 </resources>
