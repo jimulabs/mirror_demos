@@ -1,0 +1,16 @@
+<screen>
+    <actionbar showTabsFor="@id/pager" />
+    <_content layout="activity_main">
+        <pager>
+            <_page layout="@layout/fragment_alarm_list" icon="@drawable/alarm_icon">
+                <alarmList>
+                    <items include="alarms.xml" />
+                </alarmList>
+            </_page>
+            <_page layout="@layout/fragment_alarm_list" icon="@drawable/time_icon">
+            </_page>
+            <_page layout="@layout/fragment_alarm_list" icon="@drawable/stop_watch">
+            </_page>
+        </pager>
+    </_content>
+</screen>

@@ -1,0 +1,17 @@
+<items layout="@layout/alarm_list_item">
+    <_item>
+        <time>5:30</time>
+    </_item>
+    <_item>
+        <time>6:34</time>
+    </_item>
+    <_item>
+        <time>8:31</time>
+    </_item>
+    <_item>
+        <time>9:30</time>
+    </_item>
+    <_item>
+        <time>19:30</time>
+    </_item>
+</items>
