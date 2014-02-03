@@ -1,15 +1,19 @@
-<screen>
-    <actionbar showTabsFor="@id/pager" />
+<screen script="js/viewPagerTransformation.js">
+    <actionbar showTabsFor="@id/pager"/>
     <_content layout="activity_main">
         <pager>
-            <_page layout="@layout/fragment_alarm_list" icon="@drawable/alarm_icon">
+            <_page layout="@layout/fragment_alarm_list" icon="@drawable/ic_tab_alarm">
                 <alarmList>
+                    <_item layout="@layout/spacer" count="1"/>
                     <items include="alarms.xml" />
                 </alarmList>
             </_page>
-            <_page layout="@layout/fragment_alarm_list" icon="@drawable/time_icon">
+            <_page layout="@layout/fragment_clock" icon="@drawable/ic_tab_time">
+                <hoursMinutes>22:07</hoursMinutes>
+                <seconds>15</seconds>
+                <date>Sun, February 2</date>
             </_page>
-            <_page layout="@layout/fragment_alarm_list" icon="@drawable/stop_watch">
+            <_page layout="@layout/fragment_stopwatch" icon="@drawable/ic_tab_stopwatch">
             </_page>
         </pager>
     </_content>
