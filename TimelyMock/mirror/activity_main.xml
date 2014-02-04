@@ -1,4 +1,4 @@
-<screen script="js/viewPagerTransformation.js">
+<screen script="js/main.js">
     <actionbar showTabsFor="@id/pager"/>
     <_content layout="activity_main">
         <pager>
