@@ -3,6 +3,21 @@ var timeBar = $('@id/timeBar')
 var timeText = $('@id/time', timeBar)
 var oldX = timeText.x
 
+function playRipple(x, y) {
+    var ripple = $('@id/ripple')
+    ripple.alpha = 1
+    ripple.scale = 1
+    ripple.x = x - ripple.width/2
+    ripple.y = y - ripple.height/2
+    ripple.animate({
+        properties: {
+            scale: 4,
+            alpha: 0
+        },
+        duration: 601
+    });
+}
+
 function getNewX(touchX) {
     var oneThird = timeBar.width/3 - timeText.width
     var twoThird = timeBar.width/3 * 2
@@ -33,7 +48,10 @@ timeBar.on('touch',
                 interpolator: '@android:interpolator/decelerate_cubic',
                 duration: 250
             });
-            if (isUp) timeBar.animate('@animator/bounce_y')
+            if (isUp) {
+                timeBar.animate('@animator/bounce_y')
+                playRipple(event.x + view.x, event.y + view.y)
+            }
             if (event.type=='down') lastY = null
         }
     });

@@ -6,6 +6,12 @@
               android:background="@drawable/bg_blue_gradient"
               android:layout_width="match_parent"
               android:layout_height="match_parent">
+    <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:alpha="0"
+            android:id="@+id/ripple"
+            android:src="@drawable/ripple" />
 
     <LinearLayout
             android:id="@+id/timeBar"
@@ -22,5 +28,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
     </LinearLayout>
+
 
 </RelativeLayout>
