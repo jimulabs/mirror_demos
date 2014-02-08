@@ -1,7 +1,6 @@
 var timeBar = $('@id/timeBar')
 
 var timeText = $('@id/time', timeBar)
-var oldX = timeText.x
 
 function playRipple(x, y) {
     var ripple = $('@id/ripple')
@@ -18,26 +17,24 @@ function playRipple(x, y) {
     });
 }
 
-function getNewX(touchX) {
+function calcNewTimeTextX(touchX) {
     var oneThird = timeBar.width/3 - timeText.width
     var twoThird = timeBar.width/3 * 2
     var touchedLeft = touchX < timeText.x + timeText.width/2
     return touchedLeft ? twoThird : oneThird
 }
 
-var lastY = null
+var oldX = timeText.x
 
-timeBar.on('touch',
+var timeBarYOffset = 0
+var timeBarParent = timeBar.parent
+timeBarParent.on('touch',
     function(view, event) {
         if (event.type == 'move') {
-            var deltaY = lastY!=null ? event.y-lastY : 0
-            deltaY = Math.min(50, Math.max(-50, deltaY))
-            //log("deltaY="+deltaY+' event.y='+event.y+' lastY='+lastY)
-            lastY = event.y
-            timeBar.y += deltaY
+            timeBar.y = event.y - timeBarYOffset;
         } else {
             var isUp = event.type == 'up';
-            var newX = getNewX(event.x)
+            var newX = calcNewTimeTextX(event.x)
             var toX = isUp ? oldX : newX;
             var toScale = isUp ? 1 : 0.8;
             timeText.animate({
@@ -52,7 +49,7 @@ timeBar.on('touch',
                 timeBar.animate('@animator/bounce_y')
                 playRipple(event.x + view.x, event.y + view.y)
             }
-            if (event.type=='down') lastY = null
+            if (!isUp) timeBarYOffset = event.y - timeBar.y
         }
-    });
-
+    }
+);
