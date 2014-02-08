@@ -17,25 +17,29 @@ function playRipple(x, y) {
     });
 }
 
-function calcNewTimeTextX(touchX) {
+function calcTimeTextSideX(touchX) {
     var oneThird = timeBar.width/3 - timeText.width
     var twoThird = timeBar.width/3 * 2
     var touchedLeft = touchX < timeText.x + timeText.width/2
     return touchedLeft ? twoThird : oneThird
 }
 
-var oldX = timeText.x
-
 var timeBarYOffset = 0
 var timeBarParent = timeBar.parent
+var timeBarYMargin = 100
 timeBarParent.on('touch',
     function(view, event) {
         if (event.type == 'move') {
-            timeBar.y = event.y - timeBarYOffset;
+            timeBar.y = Math.max(event.y - timeBarYOffset, timeBarYMargin)
+            var hourMinute = event.y * 24 / (timeBarParent.height - timeBar.height)
+            var hour = Math.min(24, Math.max(Math.floor(hourMinute), 0))
+            var minute = hourMinute - hour>0.5 ? ':30' : ':00'
+            timeText.text = hour + minute
         } else {
             var isUp = event.type == 'up';
-            var newX = calcNewTimeTextX(event.x)
-            var toX = isUp ? oldX : newX;
+            var sideX = calcTimeTextSideX(event.x)
+            var centerX = (timeBar.width - timeText.width)/2
+            var toX = isUp ? centerX : sideX;
             var toScale = isUp ? 1 : 0.8;
             timeText.animate({
                 properties: {

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_marginTop="50dp"
+              android:layout_width="wrap_content"
+              android:layout_height="match_parent">
+
+    <LinearLayout style="@style/rulerContainer">
+        <View style="@style/rulerLine"/>
+        <TextView android:text="0" style="@style/textStyle.ruler"/>
+    </LinearLayout>
+
+    <View style="@style/rulerLine"/>
+    <View style="@style/rulerLine"/>
+    <View style="@style/rulerLine"/>
+    <View style="@style/rulerLine"/>
+    <View style="@style/rulerLine"/>
+
+    <LinearLayout style="@style/rulerContainer">
+        <View style="@style/rulerLine"/>
+        <TextView android:text="6" style="@style/textStyle.ruler"/>
+    </LinearLayout>
+
+    <View style="@style/rulerLine"/>
+    <View style="@style/rulerLine"/>
+    <View style="@style/rulerLine"/>
+    <View style="@style/rulerLine"/>
+    <View style="@style/rulerLine"/>
+
+    <LinearLayout style="@style/rulerContainer">
+        <View style="@style/rulerLine"/>
+        <TextView android:text="12" style="@style/textStyle.ruler"/>
+    </LinearLayout>
+
+    <View style="@style/rulerLine"/>
+    <View style="@style/rulerLine"/>
+    <View style="@style/rulerLine"/>
+    <View style="@style/rulerLine"/>
+    <View style="@style/rulerLine"/>
+
+    <LinearLayout style="@style/rulerContainer">
+        <View style="@style/rulerLine"/>
+        <TextView android:text="18" style="@style/textStyle.ruler"/>
+    </LinearLayout>
+
+    <View style="@style/rulerLine"/>
+    <View style="@style/rulerLine"/>
+    <View style="@style/rulerLine"/>
+    <View style="@style/rulerLine"/>
+    <View style="@style/rulerLine"/>
+
+    <LinearLayout style="@style/rulerContainer">
+        <View style="@style/rulerLine"/>
+        <TextView android:text="24" style="@style/textStyle.ruler"/>
+    </LinearLayout>
+
+</LinearLayout>
