@@ -1,3 +1,5 @@
+include('ruler.js')
+
 /*
 $("@id/pager").on("pageTransform",
     function(leftView, rightView, leftPosition, rightPosition) {

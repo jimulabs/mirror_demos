@@ -1,6 +1,6 @@
-var timeBar = $('@id/timeBar')
+include('ruler.js')
 
-var timeText = $('@id/time', timeBar)
+/**************** Function definitions  **************/
 
 function playRipple(x, y) {
     var ripple = $('@id/ripple')
@@ -18,42 +18,53 @@ function playRipple(x, y) {
 }
 
 function calcTimeTextSideX(touchX) {
-    var oneThird = timeBar.width/3 - timeText.width
+    var timeBar = $('@id/timeBar')
+    var timeText = $('@id/timeText')
+    var oneThird = timeBar.width/2.5 - timeText.width
     var twoThird = timeBar.width/3 * 2
     var touchedLeft = touchX < timeText.x + timeText.width/2
     return touchedLeft ? twoThird : oneThird
 }
 
-var timeBarYOffset = 0
-var timeBarParent = timeBar.parent
-var timeBarYMargin = 100
-var currentMinutes = 0
-
 function setTime(ratio, stepInMinute) {
+    var timeBar = $('@id/timeBar')
+    var timeBarParent = timeBar.parent
+    var timeText = $('@id/timeText')
     ratio = Math.max(0, Math.min(1, ratio))
-    timeBar.y = ratio * (timeBarParent.height - timeBarYMargin - timeBar.height) + timeBar.height
+    timeBar.y = ratio * (timeBarParent.height - gTimeBarYMargin - timeBar.height) + timeBar.height
     var hm = ratio * 24
     var h = Math.floor(hm)
     var m = Math.round((hm - h)*60)
     if (stepInMinute) m = Math.floor(m/stepInMinute)*stepInMinute
     var zeropadding = function(x) { return x<10 ? '0'+x : x }
     timeText.text = zeropadding(h) + ':' + zeropadding(m)
-    currentMinutes = h*60 + m
+    gCurrentMinutes = h*60 + m
+
+    magnifyRuler(ratio)
 }
 
 function setTimeInMinutes(minutes) {
     setTime(minutes / (24*60))
 }
 
+/**************** Code entry point **************/
+
 setTimeInMinutes(10*60+30)
+
+var timeBar = $('@id/timeBar')
+var timeBarYOffset = 0
+var timeBarParent = timeBar.parent
+var gTimeBarYMargin = 100
+var gCurrentMinutes = 0
 
 var hitTimeBarWhenDown = false
 timeBarParent.on('touch',
     function(view, event) {
         if (event.type == 'move' && hitTimeBarWhenDown) {
-            var ratio = (event.y- timeBarYMargin) / (timeBarParent.height - timeBarYMargin)
+            var ratio = (event.y- gTimeBarYMargin) / (timeBarParent.height - gTimeBarYMargin)
             setTime(ratio, 30)
         } else {
+            var timeText = $('@id/timeText', timeBar)
             var isUp = event.type == 'up'
             var isDown = event.type == 'down'
             var hitTimeBar = timeBar.y<=event.y && event.y<=timeBar.y+timeBar.height
@@ -73,9 +84,10 @@ timeBarParent.on('touch',
                 if (isUp) timeBar.animate('@animator/bounce_y')
             } else if (isUp) {
                 var sign = event.y < timeBar.y ? -1 : 1
-                setTimeInMinutes(currentMinutes + sign*5)
+                setTimeInMinutes(gCurrentMinutes + sign*5)
             }
             if (isUp) playRipple(event.x + view.x, event.y + view.y)
         }
     }
 );
+

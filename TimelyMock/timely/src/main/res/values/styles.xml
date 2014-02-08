@@ -168,14 +168,15 @@
         <item name="android:color">#44ffffff</item>
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">10sp</item>
     </style>
 
     <style name="rulerLine">
         <item name="android:layout_width">7dp</item>
-        <item name="android:layout_height">3dp</item>
+        <item name="android:layout_height">2dp</item>
         <item name="android:layout_marginRight">3dp</item>
-        <item name="android:layout_marginTop">8.5dp</item>
-        <item name="android:layout_marginBottom">8.5dp</item>
+        <item name="android:layout_marginTop">8dp</item>
+        <item name="android:layout_marginBottom">8dp</item>
         <item name="android:background">@color/separator_background</item>
     </style>
 
@@ -183,5 +184,6 @@
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:gravity">center_vertical</item>
+        <item name="android:minHeight">22.5dp</item>
     </style>
 </resources>
