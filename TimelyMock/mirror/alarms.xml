@@ -1,6 +1,8 @@
-<items layout="@layout/alarm_list_item">
+<items layout="@layout/alarm_list_item"  xmlns:m="http://jimulabs.com/schemas/mirror">
     <_item>
-        <time>5:30</time>
+        <time m:href="fragment_add_alarm.xml" m:target="_blank"
+              m:animEnter="@android:anim/fade_in" m:animExit="@android:anim/fade_out"
+              m:event="click">5:31</time>
     </_item>
     <_item>
         <time>6:34</time>
