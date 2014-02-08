@@ -28,7 +28,7 @@ function magnifyRuler(ratio) {
         var v = children.get(i)
         if (lo<=i && i<=hi) {
             var vVsCenter = 1 - Math.abs(i/childCount - ratio)*5
-            log('i='+i+' vVsCenter='+vVsCenter+' ratio='+ratio+' childCount='+childCount)
+//            log('i='+i+' vVsCenter='+vVsCenter+' ratio='+ratio+' childCount='+childCount)
             setRulerLabelParams(v, vVsCenter, 4 * vVsCenter)
         } else {
             showNormalLabelOnRuler(v, i)

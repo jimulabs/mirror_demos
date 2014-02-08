@@ -31,7 +31,7 @@ function setTime(ratio, stepInMinute) {
     var timeBarParent = timeBar.parent
     var timeText = $('@id/timeText')
     ratio = Math.max(0, Math.min(1, ratio))
-    timeBar.y = ratio * (timeBarParent.height - gTimeBarYMargin - timeBar.height) + timeBar.height
+    timeBar.y = ratio * (timeBarParent.height - gTimeBarYMargin) + timeBar.height
     var hm = ratio * 24
     var h = Math.floor(hm)
     var m = Math.round((hm - h)*60)
@@ -49,19 +49,18 @@ function setTimeInMinutes(minutes) {
 
 /**************** Code entry point **************/
 
-setTimeInMinutes(10*60+30)
 
 var timeBar = $('@id/timeBar')
 var timeBarYOffset = 0
 var timeBarParent = timeBar.parent
-var gTimeBarYMargin = 100
+var gTimeBarYMargin = 50
 var gCurrentMinutes = 0
 
 var hitTimeBarWhenDown = false
 timeBarParent.on('touch',
     function(view, event) {
         if (event.type == 'move' && hitTimeBarWhenDown) {
-            var ratio = (event.y- gTimeBarYMargin) / (timeBarParent.height - gTimeBarYMargin)
+            var ratio = (event.y - gTimeBarYMargin-timeBar.height) / (timeBarParent.height - gTimeBarYMargin)
             setTime(ratio, 30)
         } else {
             var timeText = $('@id/timeText', timeBar)
@@ -91,3 +90,4 @@ timeBarParent.on('touch',
     }
 );
 
+setTimeInMinutes(10*60+30)
