@@ -78,7 +78,7 @@ timeBarParent.on('touch',
                         scale: isUp ? 1 : 0.8
                     },
                     interpolator: '@android:interpolator/decelerate_cubic',
-                    duration: 250
+                    duration: 350
                 });
                 if (isUp) timeBar.animate('@animator/bounce_y')
             } else if (isUp) {
@@ -91,3 +91,5 @@ timeBarParent.on('touch',
 );
 
 setTimeInMinutes(10*60+30)
+
+timeBar.animate('@animator/bounce_y')
