@@ -26,18 +26,18 @@ function calcTimeTextSideX(touchX) {
     return touchedLeft ? twoThird : oneThird
 }
 
-function setTime(ratio, stepInMinute) {
+function setTime(ratio) {
     var timeBar = $('@id/timeBar')
     var timeBarParent = timeBar.parent
-    var timeText = $('@id/timeText')
     ratio = Math.max(0, Math.min(1, ratio))
-    timeBar.y = ratio * (timeBarParent.height - gTimeBarYMargin) + timeBar.height
+    var ruler = $('@id/ruler')
+    timeBar.y = ratio * ruler.height + ruler.top - timeBar.height/2
     var hm = ratio * 24
     var h = Math.floor(hm)
     var m = Math.round((hm - h)*60)
-    if (stepInMinute) m = Math.floor(m/stepInMinute)*stepInMinute
     var zeropadding = function(x) { return x<10 ? '0'+x : x }
-    timeText.text = zeropadding(h) + ':' + zeropadding(m)
+    var timeText = $('@id/timeText')
+    timeText.text = zeropadding(h<24? h : 0) + ':' + zeropadding(m)
     gCurrentMinutes = h*60 + m
 
     magnifyRuler(ratio)
@@ -53,15 +53,19 @@ function setTimeInMinutes(minutes) {
 var timeBar = $('@id/timeBar')
 var timeBarYOffset = 0
 var timeBarParent = timeBar.parent
-var gTimeBarYMargin = 50
+var gRulerMarginTop = $('@id/ruler').top
 var gCurrentMinutes = 0
+var gTouchYToTimeBarCenter = 0
 
 var hitTimeBarWhenDown = false
 timeBarParent.on('touch',
     function(view, event) {
         if (event.type == 'move' && hitTimeBarWhenDown) {
-            var ratio = (event.y - gTimeBarYMargin-timeBar.height) / (timeBarParent.height - gTimeBarYMargin)
-            setTime(ratio, 30)
+            var ratio = (event.y - gTouchYToTimeBarCenter - gRulerMarginTop) / (timeBarParent.height - gRulerMarginTop)
+            var steps = 30
+            var minutes = Math.round(ratio * 24 * 60 / steps) * steps
+//            log('event.y='+event.y+' gTouchYToTimeBarCenter='+gTouchYToTimeBarCenter+' mins='+minutes)
+            setTimeInMinutes(minutes)
         } else {
             var timeText = $('@id/timeText', timeBar)
             var isUp = event.type == 'up'
@@ -81,15 +85,20 @@ timeBarParent.on('touch',
                     duration: 350
                 });
                 if (isUp) timeBar.animate('@animator/bounce_y')
+                if (isDown) {
+                    gTouchYToTimeBarCenter = event.y - (timeBar.y + timeBar.height/2)
+//                    log('down - event.y='+event.y+' gTouchYToTimeBarCenter='+gTouchYToTimeBarCenter)
+                }
             } else if (isUp) {
                 var sign = event.y < timeBar.y ? -1 : 1
                 setTimeInMinutes(gCurrentMinutes + sign*5)
             }
             if (isUp) playRipple(event.x + view.x, event.y + view.y)
+//            if (isUp) log('up')
         }
     }
 );
 
 setTimeInMinutes(10*60+30)
 
-timeBar.animate('@animator/bounce_y')
+//timeBar.animate('@animator/bounce_y')

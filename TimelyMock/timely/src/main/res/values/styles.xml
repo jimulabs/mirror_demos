@@ -173,7 +173,7 @@
 
     <style name="rulerLine">
         <item name="android:layout_width">7dp</item>
-        <item name="android:layout_height">2dp</item>
+        <item name="android:layout_height">1dp</item>
         <item name="android:layout_marginRight">3dp</item>
         <item name="android:layout_marginTop">8dp</item>
         <item name="android:layout_marginBottom">8dp</item>

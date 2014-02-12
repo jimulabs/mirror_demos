@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:id="@+id/ruler"
               android:orientation="vertical"
-              android:layout_marginTop="50dp"
+              android:layout_marginTop="80dp"
+              android:layout_marginBottom="20dp"
               android:layout_width="wrap_content"
-              android:minWidth="100dp"
+              android:minWidth="200dp"
               android:layout_height="match_parent">
 
     <LinearLayout style="@style/rulerContainer">
@@ -107,5 +108,9 @@
         <View style="@style/rulerLine" android:id="@+id/rulerLine"/>
         <TextView android:text="23" style="@style/textStyle.ruler" android:id="@+id/rulerText"/>
     </LinearLayout>
+    <LinearLayout style="@style/rulerContainer">
+        <View style="@style/rulerLine" android:id="@+id/rulerLine"/>
+        <TextView android:text="24" style="@style/textStyle.ruler" android:id="@+id/rulerText"/>
+    </LinearLayout>
 
-</LinearLayout>
+</FrameLayout>
