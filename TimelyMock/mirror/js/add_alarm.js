@@ -92,4 +92,3 @@ timeBarParent.on('touch',
 
 setTimeInMinutes(10*60+30)
 
-timeBar.animate('@animator/bounce_y')
