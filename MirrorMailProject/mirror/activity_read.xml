@@ -5,6 +5,6 @@
         menu="read_menu"
         showHome="true"
         />
-    <_content include="read_mail_content.xml" />
+    <_content include="read_mail_content_2.xml" />
 
 </screen>
