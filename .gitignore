@@ -29,6 +29,9 @@ proguard/
 .idea/
 
 build
-mirror/R.*
-mirror/*.dex
+**/mirror/R.*
+**/mirror/*.dex
+**/mirror/*.ap_
+**/mirror/header
+
 
