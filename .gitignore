@@ -27,3 +27,8 @@ proguard/
 *.ipr
 *.iws
 .idea/
+
+build
+mirror/R.*
+mirror/*.dex
+
