@@ -33,5 +33,5 @@ build
 **/mirror/*.dex
 **/mirror/*.ap_
 **/mirror/header
-
+**/mirror/deleted_files_for_jimu.txt
 

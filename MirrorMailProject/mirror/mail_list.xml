@@ -4,8 +4,10 @@
         <mail_list>
             <items include="list_content.xml"/>
         </mail_list>
+        <!--
         <read_mail>
-            <_content include="read_mail_content.xml"/>
+            <_content include="read_mail_content1.xml"/>
         </read_mail>
+        -->
     </_content>
 </screen>
