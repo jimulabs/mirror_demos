@@ -11,11 +11,7 @@
             <size
                     android:width="40dp"
                     android:height="40dp"/>
-            <gradient
-                    android:startColor="#22000000"
-                    android:endColor="#55000000"
-                    android:gradientRadius="2"
-                    android:type="radial"/>
+            <solid android:color="#55000000" />
         </shape>
     </item>
     <item>
@@ -28,11 +24,7 @@
             <size
                     android:width="80dp"
                     android:height="80dp"/>
-            <gradient
-                    android:startColor="#22000000"
-                    android:endColor="#33000000"
-                    android:gradientRadius="2"
-                    android:type="radial"/>
+            <solid android:color="#33000000" />
         </shape>
     </item>
 </layer-list>
