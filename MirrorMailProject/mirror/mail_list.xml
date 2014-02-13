@@ -1,0 +1,11 @@
+<screen>
+    <actionbar title="INBOX" icon="inbox" menu="list_menu"/>
+    <_content layout="@layout/mail_list">
+        <mail_list>
+            <items include="list_content.xml"/>
+        </mail_list>
+        <read_mail>
+            <_content include="read_mail_content.xml"/>
+        </read_mail>
+    </_content>
+</screen>
