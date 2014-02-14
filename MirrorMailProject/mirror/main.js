@@ -1,1 +1,0 @@
-//$('@id/drawer_layout').animate('@animator/slide_in_left')
