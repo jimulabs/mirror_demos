@@ -11,7 +11,4 @@
             android:fromAlpha="0.4"
             android:toAlpha="1"/>
 
-    <translate android:fromYDelta="-100%"
-               android:startOffset="200"
-               android:toYDelta="0%" />
 </set>
