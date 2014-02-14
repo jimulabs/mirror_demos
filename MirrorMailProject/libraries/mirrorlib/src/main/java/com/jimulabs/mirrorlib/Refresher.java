@@ -1,15 +1,20 @@
 package com.jimulabs.mirrorlib;
 
 import android.app.Activity;
+import android.app.Service;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.content.ServiceConnection;
 import android.content.res.AssetManager;
 import android.content.res.Resources;
+import android.os.IBinder;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 
 import com.jimulabs.mirrorlib.model.ResourceDirModel;
+import com.jimulabs.mirrorlib.receive.ResourceReceiveService;
 
 import org.apache.commons.io.FileUtils;
 
@@ -17,6 +22,8 @@ import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by matt on 2014-01-28.
@@ -36,6 +43,7 @@ public class Refresher {
     private AssetManager mOrigAssets;
 
     private Activity mActivity;
+    private Map<Activity, ServiceConnection> mConnectionMap;
 
     private ResourceDirModel mCurrentModel;
 
@@ -47,6 +55,8 @@ public class Refresher {
         mOrigRes = r;
         mOrigTheme = t;
         mOrigAssets = a;
+
+        mConnectionMap = new HashMap<Activity, ServiceConnection>();
     }
 
     public static void init(Context c) {
@@ -58,14 +68,48 @@ public class Refresher {
         sIniting = false;
     }
 
-    public static void startActivity(Activity a) {
+    public static void createActivity(Activity a) {
         init(a);
         sInstance.mActivity = a;
     }
 
+    static int count = 0;
+
+    public static void startActivity(Activity a) {
+//        sInstance.bindService(a);
+        Log.i("Refresher", "Starting activity " + a.getLocalClassName());
+        count++;
+        Log.i("Refresher", "count = " + sInstance.count);
+    }
+
+    private void bindService(Activity a) {
+        ServiceConnection conn = new ServiceConnection() {
+            @Override
+            public void onServiceConnected(ComponentName componentName, IBinder iBinder) {
+            }
+
+            @Override
+            public void onServiceDisconnected(ComponentName componentName) {
+            }
+        };
+        a.bindService(new Intent(a, ResourceReceiveService.class), conn, Service.BIND_AUTO_CREATE);
+        mConnectionMap.put(a, conn);
+    }
+
+    public static void stopActivity(Activity a) {
+//        sInstance.unbindService(a);
+    }
+
+    private void unbindService(Activity a) {
+        if (mConnectionMap.containsKey(a)) {
+            ServiceConnection conn = mConnectionMap.remove(a);
+            a.unbindService(conn);
+        }
+    }
+
     public static void addRefreshAction(Menu m) {
-        MenuInflater inflater = sInstance.mActivity.getMenuInflater();
-        inflater.inflate(R.menu.mirrorlib_menu, m);
+//        MenuInflater inflater = sInstance.mActivity.getMenuInflater();
+//        inflater.inflate(R.menu.mirrorlib_menu, m);
     }
 
     public static boolean isReady() {
@@ -73,8 +117,17 @@ public class Refresher {
     }
 
     public static void refresh() {
-        if (sInstance.mActivity != null) {
-            sInstance.restartActivity();
+        Log.i("Refresher", "#refresh: activity null? " + (sInstance.mActivity == null) + " count: " +
+                sInstance.count);
+        if (sInstance.mActivity != null && sInstance.count > 1) {
+            Log.i("Refresher", "Posting restart to UI thread");
+            sInstance.mActivity.runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    Log.i("Refresher", "Restarting activity");
+                    sInstance.restartActivity();
+                }
+            });
         }
     }
 

@@ -2,22 +2,28 @@ package com.jimulabs.samples.mirrormail;
 
 import android.app.ActionBar;
 import android.app.Activity;
+import android.app.Service;
+import android.content.ComponentName;
 import android.content.Intent;
+import android.content.ServiceConnection;
 import android.content.res.AssetManager;
 import android.content.res.Resources;
 import android.os.Bundle;
+import android.os.IBinder;
 import android.support.v4.app.NavUtils;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 
 import com.jimulabs.mirrorlib.Refresher;
+import com.jimulabs.mirrorlib.receive.ResourceReceiveService;
 
 public class ReadActivity extends Activity {
 
+    private ServiceConnection mConn;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        Refresher.startActivity(this);
+        Refresher.createActivity(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.read_activity);
 
@@ -35,6 +41,29 @@ public class ReadActivity extends Activity {
                     .add(R.id.read_mail_fragment, fragment)
                     .commit();
         }
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        Refresher.startActivity(this);
+        mConn = new ServiceConnection() {
+            @Override
+            public void onServiceConnected(ComponentName componentName, IBinder iBinder) {
+            }
+
+            @Override
+            public void onServiceDisconnected(ComponentName componentName) {
+            }
+        };
+        bindService(new Intent(this, ResourceReceiveService.class), mConn, Service.BIND_AUTO_CREATE);
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        Refresher.stopActivity(this);
+        unbindService(mConn);
     }
 
     @Override

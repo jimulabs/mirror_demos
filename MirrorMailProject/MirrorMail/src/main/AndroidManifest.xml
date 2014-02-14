@@ -6,7 +6,7 @@
     android:versionName="1.0">
 
     <uses-sdk
-        android:minSdkVersion="15"
+        android:minSdkVersion="16"
         android:targetSdkVersion="19"/>
 
     <application
@@ -29,6 +29,9 @@
         <activity android:name=".ReadActivity">
 
         </activity>
+
+        <service android:name="com.jimulabs.mirrorlib.receive.ResourceReceiveService" >
+        </service>
 
     </application>
 

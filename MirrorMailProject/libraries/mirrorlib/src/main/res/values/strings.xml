@@ -1,3 +1,12 @@
 <resources>
-    <string name="app_name">My Module</string>
+    <string name="app_name">mirrorlib</string>
+
+    <string name="cannot_find_resource_bundle">Couldn\'t find the latest resource bundle. Try restarting MirrorServer.</string>
+    <string name="cannot_open_resource_bundle">Couldn\'t open the latest resource bundle. Try restarting MirrorServer.</string>
+
+    <string name="version_received">#%1$d resource update of %2$s received.</string>
+    <string name="version">#%1$d Resource Update</string>
+
+    <string name="sdcard_missing">SD card not writable! I cannot receive resources! \nMake sure the SD card is not full and USB storage is turned off.</string>
+    <string name="sdcard_almost_full">Your SD card is almost full! Mirror may not be able to receive resources.</string>
 </resources>

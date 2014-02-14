@@ -16,6 +16,14 @@ import java.util.regex.Pattern;
  * Created by lintonye on 2013-07-03.
  */
 public class ResourceDirModel {
+
+    public static class FailedToLoadResourceModelException extends Exception {
+        FailedToLoadResourceModelException(Throwable cause) {
+            super(cause);
+        }
+    }
+
+
     private static final String RESOURCE_MAP_NAME = "R.txt";
     private static final String ANDROID_DEX_FILE_NAME = "classes.dex";
 
@@ -38,18 +46,31 @@ public class ResourceDirModel {
             Pattern.compile("int\\[\\] styleable (\\S+) \\{ ((0x[0-9a-f]{8}(,)? )+)\\}");
     private Map<String, int[]> mAttrMap;
 
-    public ResourceDirModel(File dir) throws IOException, InvalidIncludeException,
-            XmlPullParserException, CircularDependencyException, MetaNodeFactoryException {
-        mRootDir = dir;
-        verify();
+    public ResourceDirModel(File dir) throws FailedToLoadResourceModelException {
+        try {
+            mRootDir = dir;
+            verify();
 
-        mHeader = parseHeader();
-        mDexState = mHeader.getDexState();
-        mAttrMap = parseResourceMap();
+            mHeader = parseHeader();
+            mDexState = mHeader.getDexState();
+            mAttrMap = parseResourceMap();
 
-        MetaNodeFactory.ParsedNodes nodes = parseMetaNodes();
-        mScreens = nodes.getScreenNodes();
-        mInvalidNodes = nodes.getInvalidNodes();
+            MetaNodeFactory.ParsedNodes nodes = parseMetaNodes();
+            mScreens = nodes.getScreenNodes();
+            mInvalidNodes = nodes.getInvalidNodes();
+        } catch (XmlPullParserException e) {
+            throw new FailedToLoadResourceModelException(e);
+        } catch (InvalidIncludeException e) {
+            throw new FailedToLoadResourceModelException(e);
+        } catch (FileNotFoundException e) {
+            throw new FailedToLoadResourceModelException(e);
+        } catch (IOException e) {
+            throw new FailedToLoadResourceModelException(e);
+        } catch (MetaNodeFactoryException e) {
+            throw new FailedToLoadResourceModelException(e);
+        } catch (CircularDependencyException e) {
+            throw new FailedToLoadResourceModelException(e);
+        }
     }
 
     private void verify() throws FileNotFoundException {
@@ -170,7 +191,7 @@ public class ResourceDirModel {
         return null;
     }
 
-    public static ResourceDirModel detectAndCreateFromPath(File pathInsideModelDir) throws IOException, XmlPullParserException, MetaNodeFactoryException, InvalidIncludeException, CircularDependencyException {
+    public static ResourceDirModel detectAndCreateFromPath(File pathInsideModelDir) throws FailedToLoadResourceModelException {
         File modelRoot = findModelRoot(pathInsideModelDir);
         return new ResourceDirModel(modelRoot);
     }
@@ -186,5 +207,11 @@ public class ResourceDirModel {
 
         throw new IllegalArgumentException("Path not inside model dir: " +
                 pathInsideModelDir.getPath());
+    }
+
+    public static String packageNameForModelFile(File pathInModelDir) throws IOException {
+        File modelRoot = ResourceDirModel.findModelRoot(pathInModelDir);
+        ResourceHeader header = ResourceHeader.fromModelRoot(modelRoot);
+        return header.getPackageName();
     }
 }
