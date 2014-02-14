@@ -12,6 +12,7 @@
             android:layout_width="@dimen/list_avatar_width"
             android:layout_height="@dimen/list_avatar_width"
             android:layout_gravity="center_vertical"
+            android:layout_margin="@dimen/list_avatar_margin"
             android:scaleType="center"/>
 
     <FrameLayout
