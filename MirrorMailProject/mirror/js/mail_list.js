@@ -1,11 +1,3 @@
-$('@id/pencil').animate({
-    properties: {
-        scale: [2, 1]
-    },
-    interpolator: '@android:interpolator/bounce',
-    duration: 1000
-    })
-
 $('@id/avatar').on('click',
      function(view, event) {
          view.animate('@animator/card_flip_right_out',
@@ -16,3 +8,23 @@ $('@id/avatar').on('click',
                  tick.animate('@animator/card_flip_left_in')
             })
      })
+
+$('@id/tick').on('click',
+    function(view, event) {
+        view.animate('@animator/card_flip_right_out',
+            function(animationEvent) {
+                var avatar = $('@id/avatar', view.parent)
+                avatar.visibility = 'visible'
+                view.visibility = 'invisible'
+                avatar.animate('@animator/card_flip_right_in')
+           })
+    })
+
+$('@id/pencil').animate({
+    properties: {
+        scale: [2, 1]
+    },
+    interpolator: '@android:interpolator/bounce',
+    duration: 1000
+    })
+
