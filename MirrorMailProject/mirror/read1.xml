@@ -1,0 +1,10 @@
+<screen>
+    <actionbar
+            title="1 OF 84"
+            icon="ic_launcher"
+            menu="read_menu"
+            showHome="true"
+            />
+    <_content include="read_mail_content_1.xml"/>
+
+</screen>

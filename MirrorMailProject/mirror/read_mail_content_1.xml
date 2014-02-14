@@ -1,0 +1,11 @@
+<_content layout="@layout/activity_read">
+    <subject>Mirror is just awesome!</subject>
+    <timestamp>14 Jan 2014, 14:15</timestamp>
+    <sender_name>Paul McCartney</sender_name>
+    <attachments_container visibility="gone" />
+    <email_text>Hey guys,
+        Have you seen the new version of Mirror? I've got to admit it's getting better. It's a little better all the time.
+
+        Best regards,
+        Paul McCartney</email_text>
+</_content>
