@@ -5,7 +5,7 @@
 
     <!-- Action bar strings-->
     <string name="drawer_open">evgeny.belyaev@mirrormail.com</string>
-    <string name="list_activity_title">INBOX 2</string>
+    <string name="list_activity_title">INBOX</string>
     <string name="compose_activity_title">COMPOSE</string>
     <string name="read_activity_title">1 OF 84</string>
 

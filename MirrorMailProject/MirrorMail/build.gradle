@@ -1,7 +1,19 @@
 apply plugin: 'android'
 
+buildscript {
+    dependencies {
+        classpath files('../gradle/libs/mirrorlib-gradle.jar')
+    }
+}
+
 repositories {
     mavenCentral()
+}
+
+dependencies {
+    compile 'com.android.support:support-v13:+'
+    compile project(':libraries:twoway-view')
+    compile project(':libraries:mirrorlib')
 }
 
 android {
@@ -13,11 +25,20 @@ android {
         targetSdkVersion 19
     }
 
+    applicationVariants.all { variant ->
+        def suffix = capitalize(variant.name)
+        def taskName = "dexDeinline${suffix}"
+
+        task (taskName, type: com.jimulabs.mirrorlib.DexDeinlineTask, dependsOn: variant.dex) {
+            inputFile = variant.dex.outputFile
+            outputFile = variant.dex.outputFile
+            apiLevel = 18
+        }
+
+        variant.packageApplication.dependsOn(taskName)
+    }
 }
 
-dependencies {
-    compile 'com.android.support:appcompat-v7:18.0.0'
-    compile 'com.android.support:support-v4:18.0.0'
-    compile 'com.android.support:support-v13:+'
-    compile project(':libraries:twoway-view')
+def capitalize(str) {
+    return str[0].toUpperCase() + str[1..-1]
 }

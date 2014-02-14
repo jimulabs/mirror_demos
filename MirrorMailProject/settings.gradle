@@ -1,1 +1,1 @@
-include ':libraries:twoway-view', ':MirrorMail'
+include ':libraries:twoway-view', ':MirrorMail', ':libraries:mirrorlib'
