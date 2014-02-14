@@ -1,12 +1,16 @@
 <items layout="@layout/mail_list_item" xmlns:m="http://jimulabs.com/schemas/mirror">
-    <_item>
+    <_item m:href="read1.xml" m:target="@id/read_mail"
+            m:animatorEnter="@animator/slide_in_left" m:animatorExit="@animator/slide_out_right"
+            m:animEnter="@android:anim/slide_in_left" m:animExit="@android:anim/slide_out_right">
         <avatar src="images/ava1.png"/>
         <from>Paul McCartney</from>
         <subject>Have you seen the new version of Mirror?</subject>
         <time>17:35</time>
         <snippet>I've got to admit it's getting better. It's a little better all the time.</snippet>
     </_item>
-    <_item>
+    <_item m:href="read2.xml" m:target="@id/read_mail"
+           m:animatorEnter="@animator/slide_in_left" m:animatorExit="@animator/slide_out_right"
+           m:animEnter="@android:anim/slide_in_left" m:animExit="@android:anim/slide_out_right">
         <avatar src="images/ava2.png"/>
         <from>Albert Einstein</from>
         <subject>Relatively speaking</subject>
