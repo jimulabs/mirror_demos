@@ -20,8 +20,9 @@
                 android:scaleType="center"/>
 
         <FrameLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="68dp"
+                android:layout_height="68dp"
+                android:layout_margin="@dimen/list_avatar_margin"
                 android:id="@+id/tick"
                 android:visibility="invisible"
                 android:background="#999999">
@@ -31,8 +32,8 @@
                     android:layout_gravity="center"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:scaleX="2"
                     android:scaleY="2"
+                    android:scaleX="2"
                     android:src="@drawable/ic_tick"/>
         </FrameLayout>
 
