@@ -8,6 +8,7 @@
             android:layout_height="match_parent"
             android:dividerHeight="1dp"
             android:orientation="vertical"
+            android:layoutAnimation="@anim/layoutanim_push_up"
             />
 
     <ImageView
