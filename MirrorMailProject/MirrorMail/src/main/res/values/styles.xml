@@ -58,4 +58,8 @@
       <item name="borderColor">#454545</item>
     </style>
 
+    <style name="contactDetailText">
+        <item name="android:textColor">#ff7e777b</item>
+    </style>
+
 </resources>

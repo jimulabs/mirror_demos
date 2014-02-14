@@ -1,4 +1,4 @@
-<screen theme="AppBaseTheme">
+<screen script="js/read.js">
     <actionbar
         title="1 OF 84"
         icon="ic_launcher"
