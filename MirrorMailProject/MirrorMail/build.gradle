@@ -2,7 +2,7 @@ apply plugin: 'android'
 
 buildscript {
     dependencies {
-        classpath files('/Users/matt/jimu/repos/mirrorlib-gradle/build/libs/mirrorlib-gradle.jar')
+        classpath files('../gradle/libs/mirrorlib-gradle.jar')
     }
 }
 
