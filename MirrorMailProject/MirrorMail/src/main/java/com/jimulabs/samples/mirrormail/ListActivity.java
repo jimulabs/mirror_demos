@@ -54,7 +54,7 @@ public class ListActivity extends Activity
         mActionBar = getActionBar();
         mActionBar.setTitle(title);
 
-        mActionBar.setDisplayHomeAsUpEnabled(true);
+//        mActionBar.setDisplayHomeAsUpEnabled(true);
     }
 
     @Override
@@ -94,5 +94,6 @@ public class ListActivity extends Activity
         Intent readIntent = new Intent(this, ReadActivity.class);
         readIntent.putExtra(ReadMailFragment.ARG_ITEM, item);
         startActivity(readIntent);
+        overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
     }
 }

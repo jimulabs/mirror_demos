@@ -1,5 +1,7 @@
 package com.jimulabs.samples.mirrormail;
 
+import android.animation.Animator;
+import android.animation.AnimatorInflater;
 import android.app.Activity;
 import android.app.Fragment;
 import android.os.Bundle;
@@ -60,6 +62,14 @@ public class MailListFragment extends Fragment {
         }
 
         initMailList();
+        bouncePencil();
+    }
+
+    private void bouncePencil() {
+        View pencil = getView().findViewById(R.id.pencil);
+        Animator animator = AnimatorInflater.loadAnimator(getActivity(), R.animator.bounce);
+        animator.setTarget(pencil);
+        animator.start();
     }
 
     private void initMailList() {

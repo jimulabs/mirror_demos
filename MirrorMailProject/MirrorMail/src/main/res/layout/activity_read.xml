@@ -43,7 +43,7 @@
                     android:layout_alignLeft="@id/subject"
                     android:layout_below="@id/subject"
                     android:layout_marginTop="@dimen/timestamp_top_margin"
-                    android:includeFontPadding="false"
+                    android:includeFontPadding="true"
                     android:textSize="@dimen/time_stamp_text_size"
                     style="@style/textHeading" />
 
