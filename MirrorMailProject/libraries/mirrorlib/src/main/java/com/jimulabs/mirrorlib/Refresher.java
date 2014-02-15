@@ -11,7 +11,6 @@ import android.content.res.Resources;
 import android.os.IBinder;
 import android.util.Log;
 import android.view.Menu;
-import android.view.MenuInflater;
 
 import com.jimulabs.mirrorlib.model.ResourceDirModel;
 import com.jimulabs.mirrorlib.receive.ResourceReceiveService;
@@ -33,6 +32,16 @@ public class Refresher {
     private static Refresher sInstance;
     private static Context sAppContext;
     private static boolean sIniting;
+
+    public static class Connection implements ServiceConnection {
+        @Override
+        public void onServiceConnected(ComponentName name, IBinder service) {
+        }
+
+        @Override
+        public void onServiceDisconnected(ComponentName name) {
+        }
+    }
 
     private Resources mRes;
     private AssetManager mAssets;

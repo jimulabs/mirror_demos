@@ -19,7 +19,7 @@ import com.jimulabs.mirrorlib.receive.ResourceReceiveService;
 
 public class ReadActivity extends Activity {
 
-    private ServiceConnection mConn;
+    private Refresher.Connection mConn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,15 +47,7 @@ public class ReadActivity extends Activity {
     protected void onStart() {
         super.onStart();
         Refresher.startActivity(this);
-        mConn = new ServiceConnection() {
-            @Override
-            public void onServiceConnected(ComponentName componentName, IBinder iBinder) {
-            }
-
-            @Override
-            public void onServiceDisconnected(ComponentName componentName) {
-            }
-        };
+        mConn = new Refresher.Connection();
         bindService(new Intent(this, ResourceReceiveService.class), mConn, Service.BIND_AUTO_CREATE);
     }
 
