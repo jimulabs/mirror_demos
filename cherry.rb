@@ -8,7 +8,7 @@ if args.size!=2
 else
   commit = ARGV[0]
   MIN_BRANCH = 0
-  MAX_BRANCH = 7
+  MAX_BRANCH = 8
   start_branch = ARGV[1].to_i
   end_branch = MAX_BRANCH
   if start_branch<MIN_BRANCH or start_branch>MAX_BRANCH
