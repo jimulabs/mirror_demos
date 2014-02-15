@@ -20,8 +20,7 @@
     <_item>
         <avatar border_width="2.7dp" borderColor="#f9303f" src="images/ava3.png"/>
         <bullet visibility="visible"/>
-        <snippet>Change is the law of life. And those who look only to the past or present are
-            certain to miss the future.
+        <snippet>Change is the law of life. And those who look only to the past or present are certain to miss
         </snippet>
         <subject>The City Upon a Hill</subject>
         <time>yesterday</time>
@@ -31,8 +30,7 @@
         <avatar border_color="#000000" borderWidth="5px" src="images/ava4.png"/>
         <flag visibility="visible"/>
         <attachment visibility="visible"/>
-        <snippet>I think I have something tonight that's not quite correct for evening wear. Blue
-            suede shoes.
+        <snippet>I think I have something tonight that's not quite correct for evening wear. Blue suede shoes.
         </snippet>
         <subject>Man I love Vegas</subject>
         <time>Yesterday</time>
@@ -40,7 +38,7 @@
     </_item>
     <_item>
         <avatar src="images/ava5.png"/>
-        <snippet>Many leaders of big organizations, I think, don't believe that change is possible. But if you look at history, things do change, and if your business is static, you're likely to have issues.</snippet>
+        <snippet>Many leaders of big organizations, I think, don't believe that change is possible. </snippet>
         <subject>Build things that don't exist yet</subject>
         <time>June 30</time>
         <from>Larry Page</from>
