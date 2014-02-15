@@ -1,5 +1,8 @@
 package com.jimulabs.samples.mirrormail;
 
+import android.animation.Animator;
+import android.animation.AnimatorInflater;
+import android.animation.AnimatorListenerAdapter;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -65,7 +68,7 @@ public class StaticInboxAdapter extends BaseAdapter {
     }
 
     private ViewHolder createViewholder(View v) {
-        ViewHolder vh = new ViewHolder();
+        final ViewHolder vh = new ViewHolder();
         vh.avatar = findView(v, R.id.avatar);
         vh.flag = findView(v, R.id.flag);
         vh.time = findView(v, R.id.time);
@@ -74,8 +77,42 @@ public class StaticInboxAdapter extends BaseAdapter {
         vh.attachment = findView(v, R.id.attachment);
         vh.subject = findView(v, R.id.subject);
         vh.snippet = findView(v, R.id.snippet);
+        vh.tick = findView(v, R.id.tick);
+
+
+        vh.avatar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(final View v) {
+                createFlipAnimator(R.animator.card_flip_left_out, R.animator.card_flip_right_in,
+                        vh.avatar, vh.tick).start();
+            }
+        });
+        vh.tick.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(final View v) {
+                createFlipAnimator(R.animator.card_flip_right_out, R.animator.card_flip_left_in,
+                        vh.tick, vh.avatar).start();
+            }
+        });
 
         return vh;
+    }
+
+    private Animator createFlipAnimator(int animatorOut, int animatorIn, final View outView, final View inView) {
+        Context context = outView.getContext();
+        final Animator animAvatarOut = AnimatorInflater.loadAnimator(context, animatorOut);
+        animAvatarOut.setTarget(outView);
+        final Animator animTickIn = AnimatorInflater.loadAnimator(context, animatorIn);
+        animTickIn.setTarget(inView);
+        animAvatarOut.addListener(new AnimatorListenerAdapter() {
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                outView.setVisibility(View.INVISIBLE);
+                inView.setVisibility(View.VISIBLE);
+                animTickIn.start();
+            }
+        });
+        return animAvatarOut;
     }
 
     private <T extends View> T findView(View root, int id) {
@@ -84,6 +121,7 @@ public class StaticInboxAdapter extends BaseAdapter {
 
     private static class ViewHolder {
         CircularImageView avatar;
+        View tick;
         ImageView flag;
         TextView time;
         ImageView bullet;
