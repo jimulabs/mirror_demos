@@ -135,19 +135,42 @@ public class StaticInboxAdapter extends BaseAdapter {
 
     private static List<InboxItem> makeStaticItems() {
         List<InboxItem> items = new ArrayList<InboxItem>();
-        addItem(items, R.drawable.ava1, false, "17:35", false, "Paul McCartney", false,
+        addItem(items, R.drawable.ava1, false, "17:35", false, "Twobees", false,
                 "Have you seen the new version of Mirror?", "I've got to admit it's getting" +
                 "better. It's a little better all the time.");
-        addItem(items, R.drawable.ava2, false, "13:21", false, "Albert Einstein", false,
+        addItem(items, R.drawable.ava2, false, "13:21", false, "Mikey Mouse", false,
                 "Relatively speaking", "A person who never made a mistake " +
                 "never tried anything new.");
-        addItem(items, R.drawable.ava3, false, "yesterday", true, "John F. Kennedy", false,
+        addItem(items, R.drawable.ava3, false, "yesterday", true, "Donna Stevenson", false,
                 "The City Upon a Hill", "Change is the law of life. And those who look only to" +
                 "the past or present are certain to miss the future.");
-        addItem(items, R.drawable.ava4, true, "yesterday", false, "Elvis Presley", true,
+        addItem(items, R.drawable.ava4, true, "yesterday", false, "Abby McKenzie", true,
                 "Man I love Vegas", "I think I have something tonight that's not quite correct" +
                 "for evening wear. Blue suede shoes.");
-
+        addItem(items, R.drawable.ava5, false, "yesterday", true, "Donna Stevenson", false,
+                "The City Upon a Hill", "Change is the law of life. And those who look only to" +
+                "the past or present are certain to miss the future.");
+        addItem(items, R.drawable.ava6, true, "yesterday", false, "Abby McKenzie", true,
+                "Man I love Vegas", "I think I have something tonight that's not quite correct" +
+                "for evening wear. Blue suede shoes.");
+        addItem(items, R.drawable.ava1, false, "17:35", false, "Twobees", false,
+                "Have you seen the new version of Mirror?", "I've got to admit it's getting" +
+                "better. It's a little better all the time.");
+        addItem(items, R.drawable.ava2, false, "13:21", false, "Mikey Mouse", false,
+                "Relatively speaking", "A person who never made a mistake " +
+                "never tried anything new.");
+        addItem(items, R.drawable.ava3, false, "yesterday", true, "Donna Stevenson", false,
+                "The City Upon a Hill", "Change is the law of life. And those who look only to" +
+                "the past or present are certain to miss the future.");
+        addItem(items, R.drawable.ava4, true, "yesterday", false, "Abby McKenzie", true,
+                "Man I love Vegas", "I think I have something tonight that's not quite correct" +
+                "for evening wear. Blue suede shoes.");
+        addItem(items, R.drawable.ava5, false, "yesterday", true, "Donna Stevenson", false,
+                "The City Upon a Hill", "Change is the law of life. And those who look only to" +
+                "the past or present are certain to miss the future.");
+        addItem(items, R.drawable.ava6, true, "yesterday", false, "Abby McKenzie", true,
+                "Man I love Vegas", "I think I have something tonight that's not quite correct" +
+                "for evening wear. Blue suede shoes.");
         return items;
     }
 
