@@ -93,6 +93,7 @@ public class ReadActivity extends Activity {
         int id = item.getItemId();
         if (id == android.R.id.home) {
             NavUtils.navigateUpTo(this, new Intent(this, ListActivity.class));
+            overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
             return true;
         } else if (id == R.id.mirror_refresh) {
             Refresher.refresh();
@@ -100,5 +101,11 @@ public class ReadActivity extends Activity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void finish() {
+        super.finish();
+        overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
     }
 }
