@@ -62,7 +62,7 @@ public class ListActivity extends Activity
         mActionBar = getActionBar();
         mActionBar.setTitle(title);
 
-        mActionBar.setDisplayHomeAsUpEnabled(true);
+//        mActionBar.setDisplayHomeAsUpEnabled(true);
     }
 
     @Override

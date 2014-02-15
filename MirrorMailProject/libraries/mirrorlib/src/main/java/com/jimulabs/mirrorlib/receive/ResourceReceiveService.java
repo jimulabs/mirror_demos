@@ -30,7 +30,7 @@ public class ResourceReceiveService extends Service implements ResourceReceiver.
         Log.i("ResRecService", "onAllFilesReady");
 //        ResourceModelCache.getInstance().setModel(rm);
         // M TODO set model
-        sendNotification();
+        //sendNotification();
         Log.i("ResRecService", "Sent notification");
         Refresher.refresh();
     }
@@ -91,7 +91,7 @@ public class ResourceReceiveService extends Service implements ResourceReceiver.
     @Override
     public void onCreate() {
         super.onCreate();
-        runForeground();
+        //runForeground();
         mResourceReceiver = createResourceReceiver();
         mResourceReceiver.start();
     }
