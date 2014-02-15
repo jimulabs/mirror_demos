@@ -112,6 +112,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="@dimen/list_margin_right"
+                android:layout_marginBottom="6dp"
                 android:textColor="?android:attr/textColorTertiary"
                 android:fontFamily="sans-serif-light"
                 android:textSize="@dimen/snippet_font_size"/>
