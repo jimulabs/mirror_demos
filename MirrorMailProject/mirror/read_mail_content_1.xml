@@ -1,4 +1,4 @@
-<_content layout="@layout/activity_read">
+<_content layout="@layout/read_mail">
     <subject>Mirror is just awesome!</subject>
     <timestamp>14 Jan 2014, 14:15</timestamp>
     <sender_name>Paul McCartney</sender_name>
