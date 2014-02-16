@@ -2,6 +2,7 @@ package com.jimulabs.samples.mirrormail;
 
 import android.app.ActionBar;
 import android.app.Activity;
+import android.app.FragmentManager;
 import android.app.Service;
 import android.content.ComponentName;
 import android.content.Intent;
@@ -10,8 +11,10 @@ import android.content.res.AssetManager;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.os.IBinder;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.jimulabs.mirrorlib.Refresher;
 import com.jimulabs.mirrorlib.receive.ResourceReceiveService;
@@ -20,6 +23,7 @@ public class ListActivity extends Activity
         implements MailListFragment.Callbacks {
     private ActionBar mActionBar;
     private Refresher.Connection mConn;
+    private boolean mTwoPane;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +31,25 @@ public class ListActivity extends Activity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.list_activity);
         setupActionBar();
+
+        mTwoPane = checkTwoPane();
+        if (mTwoPane) {
+            enableListItemActivation();
+        }
+    }
+
+    private boolean checkTwoPane() {
+        View readPane = findViewById(R.id.read_mail);
+        return readPane != null;
+    }
+
+    private void enableListItemActivation() {
+        FragmentManager fm = getFragmentManager();
+        MailListFragment listFragment = (MailListFragment) fm
+                .findFragmentById(R.id.mail_list_fragment);
+        if (listFragment != null) {
+            listFragment.setActivateOnItemClick(true);
+        }
     }
 
     @Override
@@ -91,9 +114,20 @@ public class ListActivity extends Activity
 
     @Override
     public void onItemSelected(InboxItem item) {
-        Intent readIntent = new Intent(this, ReadActivity.class);
-        readIntent.putExtra(ReadMailFragment.ARG_ITEM, item);
-        startActivity(readIntent);
-        overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
+        if (mTwoPane) {
+            Bundle args = new Bundle();
+            args.putParcelable(ReadMailFragment.ARG_ITEM, item);
+            ReadMailFragment fragment = new ReadMailFragment();
+            fragment.setArguments(args);
+            getFragmentManager().beginTransaction()
+                    .setCustomAnimations(R.animator.slide_in_left, R.animator.slide_out_right, 0, 0)
+                    .replace(R.id.read_mail, fragment)
+                    .commit();
+        } else {
+            Intent readIntent = new Intent(this, ReadActivity.class);
+            readIntent.putExtra(ReadMailFragment.ARG_ITEM, item);
+            startActivity(readIntent);
+            overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
+        }
     }
 }
