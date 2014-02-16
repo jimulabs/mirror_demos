@@ -1,0 +1,11 @@
+<screen theme="@style/AppTheme.Light" script="js/mail_list.js">
+    <actionbar title="INBOX" icon="inbox" menu="list_menu"/>
+    <_content layout="@layout/mail_list">
+        <mail_list>
+            <items include="list_content.xml"/>
+        </mail_list>
+        <read_mail>
+            <_content include="read_mail_content_1.xml"/>
+        </read_mail>
+    </_content>
+</screen>
