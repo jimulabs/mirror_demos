@@ -5,6 +5,7 @@ import android.animation.AnimatorInflater;
 import android.app.Activity;
 import android.app.Fragment;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -77,6 +78,7 @@ public class MailListFragment extends Fragment {
         mMailList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                mMailList.setItemChecked(position, true);
                 mCallbacks.onItemSelected((InboxItem) mAdapter.getItem(position));
             }
         });
@@ -114,6 +116,7 @@ public class MailListFragment extends Fragment {
     public void setActivateOnItemClick(boolean activateOnItemClick) {
         // When setting CHOICE_MODE_SINGLE, ListView will automatically
         // give items the 'activated' state when touched.
+
         mMailList.setChoiceMode(activateOnItemClick
                 ? ListView.CHOICE_MODE_SINGLE
                 : ListView.CHOICE_MODE_NONE);
