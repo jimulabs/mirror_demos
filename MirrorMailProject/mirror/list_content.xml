@@ -1,4 +1,5 @@
-<items layout="@layout/mail_list_item" xmlns:m="http://jimulabs.com/schemas/mirror">
+<items layout="@layout/mail_list_item" xmlns:m="http://jimulabs.com/schemas/mirror"
+        count="2">
     <_item m:href="read1.xml" m:target="@id/read_mail"
             m:animatorEnter="@animator/slide_in_left" m:animatorExit="@animator/slide_out_right"
             m:animEnter="@android:anim/slide_in_left" m:animExit="@android:anim/slide_out_right">
