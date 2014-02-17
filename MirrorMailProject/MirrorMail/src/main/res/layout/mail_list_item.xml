@@ -7,7 +7,6 @@
                 android:layout_height="wrap_content"
                 android:minHeight="@dimen/list_item_height"
                 android:background="?android:attr/activatedBackgroundIndicator">
-                android:paddingBottom="6dp">
 
     <com.jimulabs.samples.mirrormail.CircularImageView
             android:id="@+id/avatar"
@@ -109,6 +108,7 @@
             android:layout_toRightOf="@id/avatar"
             android:layout_marginRight="@dimen/list_margin_right"
             android:textColor="?android:attr/textColorTertiary"
+            android:paddingBottom="6dp"
             android:fontFamily="sans-serif-light"
             android:textSize="@dimen/snippet_font_size"/>
 
