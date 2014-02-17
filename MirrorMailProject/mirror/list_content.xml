@@ -1,4 +1,5 @@
-<items layout="@layout/mail_list_item" xmlns:m="http://jimulabs.com/schemas/mirror">
+<items layout="@layout/mail_list_item" xmlns:m="http://jimulabs.com/schemas/mirror"
+        count="2">
     <_item>
         <avatar src="images/ava1.png"/>
         <from>Paul McCartney</from>
