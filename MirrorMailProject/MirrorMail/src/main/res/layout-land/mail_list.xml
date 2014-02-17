@@ -26,10 +26,12 @@
                 android:src="@drawable/pencil"/>
     </RelativeLayout>
 
+    <!--
     <FrameLayout
             android:id="@+id/read_mail"
             android:layout_weight="1"
             android:layout_width="0dp"
             android:layout_height="match_parent"/>
+            -->
 </LinearLayout>
 
